@@ -1,4 +1,4 @@
-# Version 1.0.1
+# Version 1.0.2
 
 FROM ubuntu:14.04
 
@@ -24,7 +24,7 @@ ENV ANDROID_SDK /opt/android-sdk
 ENV PATH ${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/platform-tools:/opt/java/jdk1.7/bin
 
 # Install sdk components
-RUN echo y | android update sdk --all --no-ui --filter platform-tools,build-tools-21.1.1,build-tools-21.1.2,build-tools-22.0.1,build-tools-23.0.0,android-21,android-22,android-23,extra-android-support,extra-android-m2repository,extra-google-m2repository,extra-google-google_play_services
+RUN echo y | android update sdk --all --no-ui --filter platform-tools,build-tools-23.0.0,build-tools-23.0.1,android-21,android-22,android-23,extra-android-support,extra-android-m2repository,extra-google-m2repository,extra-google-google_play_services
 
 # Check
 RUN which adb
