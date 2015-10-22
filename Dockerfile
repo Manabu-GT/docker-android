@@ -1,4 +1,4 @@
-# Version 1.0.2
+# Version 1.0.3
 
 FROM ubuntu:14.04
 
@@ -13,7 +13,7 @@ RUN apt-get install -y oracle-java7-installer
 RUN dpkg --add-architecture i386 && apt-get update && apt-get install -y --force-yes expect git wget libc6-i386 lib32stdc++6 lib32gcc1 lib32ncurses5 lib32z1 python curl make maven
 
 # Install Android SDK
-RUN cd /opt && wget --output-document=android-sdk.tgz --quiet http://dl.google.com/android/android-sdk_r24.3.4-linux.tgz && tar xzf android-sdk.tgz && rm -f android-sdk.tgz && chown -R root.root android-sdk-linux && ln -sf /opt/android-sdk-linux /opt/android-sdk
+RUN cd /opt && wget --output-document=android-sdk.tgz --quiet http://dl.google.com/android/android-sdk_r24.4.1-linux.tgz && tar xzf android-sdk.tgz && rm -f android-sdk.tgz && chown -R root.root android-sdk-linux && ln -sf /opt/android-sdk-linux /opt/android-sdk
 
 # Install Android NDK
 RUN cd /opt && wget --output-document=android-ndk.bin --quiet http://dl.google.com/android/ndk/android-ndk-r10e-linux-x86_64.bin && chmod a+x android-ndk.bin && ./android-ndk.bin && rm -f android-ndk.bin && chown -R root.root android-ndk-r10e && ln -sf /opt/android-ndk-r10e /opt/android-ndk
