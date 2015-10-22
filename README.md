@@ -9,7 +9,7 @@ This is a Dockerfile for Android projects.
 Included
 ----------
 
-* Android SDK: r24.3.4
+* Android SDK: r24.4.1
 * Android NDK: r10e
 * Build tools: 23.0.0, 23.0.1
 * Android API: 21, 22, 23
