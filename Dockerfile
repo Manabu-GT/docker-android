@@ -1,4 +1,4 @@
-# Version 1.0.3
+# Version 1.0.4
 
 FROM ubuntu:14.04
 
@@ -12,6 +12,10 @@ RUN apt-get install -y oracle-java7-installer
 # Install dependencies
 RUN dpkg --add-architecture i386 && apt-get update && apt-get install -y --force-yes expect git wget libc6-i386 lib32stdc++6 lib32gcc1 lib32ncurses5 lib32z1 python curl make maven
 
+# Copy necessary files to install Android SDK components
+COPY tools /opt/tools
+ENV PATH ${PATH}:/opt/tools
+
 # Install Android SDK
 RUN cd /opt && wget --output-document=android-sdk.tgz --quiet http://dl.google.com/android/android-sdk_r24.4.1-linux.tgz && tar xzf android-sdk.tgz && rm -f android-sdk.tgz && chown -R root.root android-sdk-linux && ln -sf /opt/android-sdk-linux /opt/android-sdk
 
@@ -23,8 +27,8 @@ ENV ANDROID_HOME /opt/android-sdk
 ENV ANDROID_SDK /opt/android-sdk
 ENV PATH ${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/platform-tools:/opt/java/jdk1.7/bin
 
-# Install sdk components
-RUN echo y | android update sdk --all --no-ui --filter platform-tools,build-tools-23.0.0,build-tools-23.0.1,android-21,android-22,android-23,extra-android-support,extra-android-m2repository,extra-google-m2repository,extra-google-google_play_services
+# Install Android SDK components
+RUN cd /opt/android-sdk && cp -a tools copy-tools && /opt/tools/expect-android-update.sh platform-tools,build-tools-23.0.0,build-tools-23.0.1,android-21,android-22,android-23,extra-android-support,extra-android-m2repository,extra-google-m2repository,extra-google-google_play_services && rm -rf temp
 
 # Check
 RUN which adb
