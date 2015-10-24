@@ -20,6 +20,24 @@ Included
 * Maven: 3.0.5
 * oracle-java7
 
+## How to build image
+
+```bash
+docker build -t manabugt/android .
+```
+
+To run an interactive shell in the built image:
+
+```bash
+docker run -i -t manabugt/android /bin/bash
+```
+
+## Push build image to repository
+
+```bash
+docker push manabugt/android:latest
+```
+
 License
 ----------
 
