@@ -5,16 +5,16 @@ FROM ubuntu:14.04
 MAINTAINER manabugt <manabu1984+github@gmail.com>
 
 # Install java7
-RUN apt-get update && apt-get install -y apt-file && apt-get install -y software-properties-common && add-apt-repository -y ppa:webupd8team/java && apt-get update
+RUN apt-get update -y && apt-get install -y apt-file && apt-get install -y software-properties-common && add-apt-repository -y ppa:webupd8team/java && apt-get update -y
 RUN echo oracle-java7-installer shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections
-RUN apt-get install -y oracle-java7-installer && rm -rf /var/cache/oracle-jdk7-installer
+RUN apt-get install -y oracle-java7-installer && rm -rf /var/lib/apt/lists/* && rm -rf /var/cache/oracle-jdk7-installer
 
 # Install java8
-RUN echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections
+RUN echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections && add-apt-repository -y ppa:webupd8team/java && apt-get update -y
 RUN apt-get install -y oracle-java8-installer && rm -rf /var/lib/apt/lists/* && rm -rf /var/cache/oracle-jdk8-installer
 
 # Install dependencies
-RUN dpkg --add-architecture i386 && apt-get update && apt-get install -y --force-yes expect git wget libc6-i386 lib32stdc++6 lib32gcc1 lib32ncurses5 lib32z1 python curl make maven
+RUN dpkg --add-architecture i386 && apt-get update -y && apt-get install -y --force-yes expect git wget libc6-i386 lib32stdc++6 lib32gcc1 lib32ncurses5 lib32z1 python curl make maven
 
 # Copy necessary files to install Android SDK components
 COPY tools /opt/tools
