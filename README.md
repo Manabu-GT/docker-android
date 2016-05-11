@@ -19,6 +19,7 @@ Included
 * Make: 3.8.1
 * Maven: 3.0.5
 * oracle-java7
+* oracle-java8
 
 ## How to build image
 
