@@ -11,8 +11,8 @@ Included
 
 * Android SDK: r24.4.1
 * Android NDK: r10e
-* Build tools: 23.0.0, 23.0.1, 23.0.2, 23.0.3
-* Android API: 21, 22, 23
+* Build tools: 23.0.3, 24.0.0, 24.0.1, 24.0.2, 24.0.3
+* Android API: 21, 22, 23, 24
 * Support maven repository
 * Google maven repository
 * Platform tools
