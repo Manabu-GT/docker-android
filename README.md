@@ -1,10 +1,7 @@
 docker-android
 ===================
 
-manabugt/android:latest
-https://registry.hub.docker.com/u/manabugt/android/
-
-This is a Dockerfile for Android projects.
+This is a Dockerfile to make the image suitable for most Android projects including NDK.
 
 Included
 ----------
@@ -21,7 +18,7 @@ Included
 * oracle-java7
 * oracle-java8
 
-## How to build image
+## ex..How to build image
 
 ```bash
 docker build -t manabugt/android .
@@ -33,7 +30,7 @@ To run an interactive shell in the built image:
 docker run -i -t manabugt/android /bin/bash
 ```
 
-## Push build image to repository
+## ex..Push build image to repository
 
 ```bash
 docker push manabugt/android:latest
