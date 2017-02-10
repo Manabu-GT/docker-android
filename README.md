@@ -9,10 +9,10 @@ This is a Dockerfile for Android projects.
 Included
 ----------
 
-* Android SDK: r24.4.1
-* Android NDK: r10e
-* Build tools: 23.0.3, 24.0.0, 24.0.1, 24.0.2, 24.0.3
-* Android API: 21, 22, 23, 24
+* Android SDK: r25.2.3
+* Android NDK: r13b
+* Build tools: 23.0.3, 24.0.3, 25.0.3
+* Android API: 21, 22, 23, 24, 25
 * Support maven repository
 * Google maven repository
 * Platform tools
