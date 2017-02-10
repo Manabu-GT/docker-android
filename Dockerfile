@@ -1,4 +1,4 @@
-# Version 1.0.7
+# Version 1.0.8
 
 FROM ubuntu:14.04
 
@@ -31,22 +31,23 @@ COPY tools /opt/tools
 ENV PATH ${PATH}:/opt/tools
 
 # Install Android SDK
-RUN cd /opt && wget --output-document=android-sdk.tgz --quiet http://dl.google.com/android/android-sdk_r24.4.1-linux.tgz && tar xzf android-sdk.tgz && rm -f android-sdk.tgz && chown -R root.root android-sdk-linux && ln -sf /opt/android-sdk-linux /opt/android-sdk
+ENV ANDROID_HOME /opt/android-sdk
+RUN mkdir -p ${ANDROID_HOME}
+RUN cd ${ANDROID_HOME} && wget -O android-sdk-tools.zip -q https://dl.google.com/android/repository/tools_r25.2.3-linux.zip && unzip -q android-sdk-tools.zip && rm -f android-sdk-tools.zip
 
 # Install Android NDK
-RUN cd /opt && wget --output-document=android-ndk.bin --quiet http://dl.google.com/android/ndk/android-ndk-r10e-linux-x86_64.bin && chmod a+x android-ndk.bin && ./android-ndk.bin && rm -f android-ndk.bin && chown -R root.root android-ndk-r10e && ln -sf /opt/android-ndk-r10e /opt/android-ndk
+RUN cd /opt && wget -O android-ndk-r13b.zip -q https://dl.google.com/android/repository/android-ndk-r13b-linux-x86_64.zip && unzip -q android-ndk-r13b.zip && rm -f android-ndk-r13b.zip && ln -sf /opt/android-ndk-r13b /opt/android-ndk
 
-# Setup environment
+# Setup additional environments
 ENV JAVA8_HOME /usr/lib/jvm/java-8-oracle
 ENV JAVA_HOME /usr/lib/jvm/java-8-oracle
 ENV JAVA7_HOME /usr/lib/jvm/java-7-oracle
-ENV ANDROID_HOME /opt/android-sdk
 ENV ANDROID_SDK /opt/android-sdk
 ENV ANDROID_NDK /opt/android-ndk
 ENV PATH ${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/platform-tools:${JAVA_HOME}/bin
 
 # Install Android SDK components
-RUN cd /opt/android-sdk && cp -a tools copy-tools && /opt/tools/expect-android-update.sh platform-tools,build-tools-23.0.3,build-tools-24.0.0,build-tools-24.0.1,build-tools-24.0.2,build-tools-24.0.3,android-21,android-22,android-23,android-24,extra-android-support,extra-android-m2repository,extra-google-m2repository,extra-google-google_play_services && rm -rf temp
+RUN cd /opt/android-sdk && cp -a tools copy-tools && /opt/tools/expect-android-update.sh platform-tools,build-tools-23.0.3,build-tools-24.0.3,build-tools-25.0.3,android-21,android-22,android-23,android-24,android-25,extra-android-support,extra-android-m2repository,extra-google-m2repository,extra-google-google_play_services && rm -rf temp
 
 # Check
 RUN which adb
